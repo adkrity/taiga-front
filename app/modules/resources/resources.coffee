@@ -15,6 +15,7 @@ services = [
     "tgIssuesResource",
     "tgExternalAppsResource",
     "tgAttachmentsResource",
+    "tgFinalAttachmentsResource",
     "tgStatsResource",
     "tgHistory",
     "tgEpicsResource",

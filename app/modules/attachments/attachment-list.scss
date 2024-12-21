@@ -42,6 +42,29 @@
     }
 }
 
+.final-attachments-full {
+    &.attachment-dragover {
+        .attachments-empty {
+            background-color: $color-gray200;
+            border-color: $color-link-primary;
+            font-style: italic;
+        }
+    }
+    .attachment-settings {
+        display: flex;
+        justify-content: flex-end;
+
+        > div,
+        .settings {
+            margin-right: .75rem;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
 .attachment-list {
     .single-attachment {
         align-items: center;

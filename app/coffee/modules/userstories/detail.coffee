@@ -40,6 +40,7 @@ class UserStoryDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
         "tgProjectService",
         "tgWysiwygService",
         "tgAttachmentsFullService",
+        "tgFinalAttachmentsFullService",
         "$tgModel",
         "$sce"
     ]
@@ -47,7 +48,7 @@ class UserStoryDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
     constructor: (@scope, @rootscope, @repo, @confirm, @rs, @params, @q, @location,
                   @log, @appMetaService, @navUrls, @analytics, @translate, @modelTransform,
                   @errorHandlingService, @configService, @projectService, @wysiwigService,
-                  @attachmentsFullService, @tgmodel, @sce) ->
+                  @attachmentsFullService,@finalAttachmentsFullService, @tgmodel, @sce) ->
         bindMethods(@)
 
         @scope.usRef = @params.usref
@@ -95,6 +96,9 @@ class UserStoryDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
 
     loadAttachments: ->
         @attachmentsFullService.loadAttachments('us', @scope.usId, @scope.projectId)
+
+    loadFinalAttachments: ->
+        @finalAttachmentsFullService.loadAttachments('us', @scope.usId, @scope.projectId)
 
     initializeEventHandlers: ->
         @scope.relateToEpic = (us) =>
@@ -195,6 +199,7 @@ class UserStoryDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
             @scope.commentModel = us
 
             @.loadAttachments()
+            @.loadFinalAttachments()
 
             window.legacyChannel.next({
                 type: 'SET_DETAIL_OBJ',

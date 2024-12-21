@@ -480,6 +480,27 @@
         "ERROR_DELETE_ATTACHMENT": "We have not been able to delete: {{errorMessage}}",
         "ERROR_MAX_SIZE_EXCEEDED": "'{{fileName}}' ({{fileSize}}) is too heavy for the Taiga, try it with a file smaller than ({{maxFileSize}})"
     },
+    "FINAL_ATTACHMENT": {
+        "SECTION_NAME": "Final Attachments",
+        "TITLE": "{{ fileName }} uploaded on {{ date }}",
+        "LIST_VIEW_MODE": "List view mode",
+        "GALLERY_VIEW_MODE": "Gallery view mode",
+        "DESCRIPTION": "Type a short description",
+        "DEPRECATED": "(deprecated)",
+        "DEPRECATED_FILE": "Deprecated?",
+        "ADD": "Add new final attachment. {{maxFileSizeMsg}}",
+        "DROP": "Drop final attachments here!",
+        "SHOW_DEPRECATED": "+ show deprecated final attachments",
+        "HIDE_DEPRECATED": "- hide deprecated final attachments",
+        "COUNT_DEPRECATED": "({{ counter }} deprecated)",
+        "MAX_UPLOAD_SIZE": "Maximum upload size is {{maxFileSize}}",
+        "DATE": "DD MMM YYYY [at] hh:mm",
+        "ERROR_UPLOAD_ATTACHMENT": "We have not been able to upload '{{fileName}}'. {{errorMessage}}",
+        "TITLE_LIGHTBOX_DELETE_ATTACHMENT": "Delete final attachment...",
+        "MSG_LIGHTBOX_DELETE_ATTACHMENT": "the final attachment '{{fileName}}'",
+        "ERROR_DELETE_ATTACHMENT": "We have not been able to delete: {{errorMessage}}",
+        "ERROR_MAX_SIZE_EXCEEDED": "'{{fileName}}' ({{fileSize}}) is too heavy for the Taiga, try it with a file smaller than ({{maxFileSize}})"
+    },
     "PAGINATION": {
         "PREVIOUS": "Prev",
         "NEXT": "Next"

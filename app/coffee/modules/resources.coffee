@@ -158,6 +158,7 @@ urls = {
     # Attachments
     "attachments/epic": "/epics/attachments"
     "attachments/us": "/userstories/attachments"
+    "final-attachments/us": "/userstories/final-attachments"
     "attachments/issue": "/issues/attachments"
     "attachments/task": "/tasks/attachments"
     "attachments/wiki_page": "/wiki/attachments"
