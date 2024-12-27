@@ -36,7 +36,7 @@ class FinalAttachmentsService
             @.maxFileSizeFormated = sizeFormat(@.maxFileSize)
 
     sizeError: (file) ->
-        message = @translate.instant("ATTACHMENT.ERROR_MAX_SIZE_EXCEEDED", {
+        message = @translate.instant("FINAL_ATTACHMENT.ERROR_MAX_SIZE_EXCEEDED", {
             fileName: file.name,
             fileSize: sizeFormat(file.size),
             maxFileSize: @.maxFileSizeFormated
@@ -69,7 +69,7 @@ class FinalAttachmentsService
         message = ""
 
         if file
-            message = @translate.instant("ATTACHMENT.ERROR_UPLOAD_ATTACHMENT", {
+            message = @translate.instant("FINAL_ATTACHMENT.ERROR_UPLOAD_ATTACHMENT", {
                         fileName: file.name, errorMessage: data.data._error_message
                       })
 

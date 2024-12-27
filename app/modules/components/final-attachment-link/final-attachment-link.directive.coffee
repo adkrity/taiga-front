@@ -8,14 +8,14 @@
 
 FinalAttachmentLinkDirective = ($parse, attachmentsPreviewService, lightboxService) ->
     link = (scope, el, attrs) ->
-        attachment = $parse(attrs.tgAttachmentLink)(scope)
+        attachment = $parse(attrs.tgFinalAttachmentLink)(scope)
 
         el.on "click", (event) ->
             if taiga.isImage(attachment.getIn(['file', 'name']))
                 event.preventDefault()
 
                 scope.$apply ->
-                    lightboxService.open($('tg-attachments-preview'))
+                    lightboxService.open($('tg-final-attachments-preview'))
                     attachmentsPreviewService.fileId = attachment.getIn(['file', 'id'])
             else if taiga.isPdf(attachment.getIn(['file', 'name']))
                 event.preventDefault()

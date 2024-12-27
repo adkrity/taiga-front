@@ -8,7 +8,7 @@
 
 class FinalAttachmentController
     @.$inject = [
-        'tgAttachmentsService',
+        'tgFinalAttachmentsService',
         '$translate'
     ]
 
