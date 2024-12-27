@@ -6,7 +6,7 @@
 //- Copyright (c) 2021-present Kaleidos INC
 
 section.attachments.final-attachments-full(
-    tg-attachments-drop="vm.addAttachments(files, false)"
+    tg-final-attachments-drop="vm.addAttachments(files, false)"
     ng-show="vm.showAttachments()"
 )
     .attachments-header
@@ -50,12 +50,12 @@ section.attachments.final-attachments-full(
     .attachments-empty(ng-if="!vm.attachments.size && !vm.uploadingAttachments().length")
         div {{'FINAL_ATTACHMENT.DROP' | translate}}
     .attachment-list.sortable(ng-if="vm.mode == 'list'")
-        div(tg-attachments-sortable="vm.reorderAttachment(attachment, index)")
+        div(tg-final-attachments-sortable="vm.reorderAttachment(attachment, index)")
           div(
             tg-repeat="attachment in vm.attachmentsVisible track by attachment.getIn(['file', 'id'])",
             tg-bind-scope
           )
-            tg-attachment(
+            tg-final-attachment(
                 attachment="attachment",
                 on-delete="vm.deleteAttachment(attachment)",
                 on-update="vm.updateAttachment(attachment)",

@@ -13,7 +13,7 @@ form.single-attachment(
 
     .attachment-name
         a.e2e-attachment-link(
-            tg-attachment-link="vm.attachment"
+            tg-final-attachment-link="vm.attachment"
             href="{{::vm.attachment.getIn(['file', 'url'])}}"
             title="{{::vm.attachment.get(['file', 'name'])}}"
             target="_blank"
