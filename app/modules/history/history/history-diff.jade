@@ -16,6 +16,11 @@
     include history-templates/history-attachments
 
 .diff-wrapper(
+    ng-if="vm.type == 'final_attachments'"
+)
+    include history-templates/history-final-attachments
+
+.diff-wrapper(
     ng-if="vm.type == 'milestone'"
 )
     include history-templates/history-milestone
