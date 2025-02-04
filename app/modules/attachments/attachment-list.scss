@@ -114,6 +114,15 @@
             color: $color-black600;
         }
     }
+    .attachment-date {
+        flex-basis: 20%;
+        flex-grow: 0;
+        flex-shrink: 0;
+        text-align: center;
+        span {
+            color: $color-black600;
+        }
+    }
     .attachment-settings {
         flex-basis: 10%;
         flex-grow: 0;

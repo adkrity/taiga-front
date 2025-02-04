@@ -59,6 +59,13 @@ sizeFormat = =>
 
 module.filter("sizeFormat", sizeFormat)
 
+
+dateFormat = =>
+    return @.taiga.dateFormat
+
+module.filter("dateFormat", dateFormat)
+
+
 toMutableFilter =  ->
     toMutable = (js) ->
       return js.toJS()

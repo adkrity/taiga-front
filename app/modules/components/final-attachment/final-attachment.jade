@@ -29,6 +29,9 @@ form.single-attachment(
     .attachment-size
         span {{::vm.attachment.getIn(['file', 'size']) | sizeFormat}}
 
+    .attachment-date
+        span {{::vm.attachment.getIn(['file', 'created_date']) | dateFormat}}
+
     .editable.editable-attachment-comment(ng-if="vm.attachment.get('editable')")
         input(
             type="text",

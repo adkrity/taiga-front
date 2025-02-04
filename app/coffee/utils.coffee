@@ -154,6 +154,35 @@ sizeFormat = (input, precision=1) ->
     return  "#{size} #{units[number]}"
 
 
+dateFormat = (input, options = {}) ->
+      # Return an empty string if no input is provided.
+      return '' unless input
+
+      # Create a Date object from the input.
+      date = new Date(input)
+      
+      # Check if the date is valid.
+      unless isFinite(date.getTime())
+        return "Invalid Date"
+
+      # Define default formatting options.
+      defaultOptions =
+        timeZone: 'Asia/Kolkata'
+        year: 'numeric'
+        month: 'short'
+        day: 'numeric'
+        hour: '2-digit'
+        minute: '2-digit'
+        second: '2-digit'
+      
+      # Merge any passed options with the defaults.
+      opts = angular.extend {}, defaultOptions, options
+      
+      # Format the date and explicitly return the formatted string.
+      formattedDate = date.toLocaleString('en-IN', opts)
+      return formattedDate
+
+
 stripTags = (str, exception) ->
     if exception
         pattern = new RegExp('<(?!' + exception + '\s*\/?)[^>]+>', 'gi')
@@ -294,6 +323,7 @@ taiga.debounce = debounce
 taiga.debounceLeading = debounceLeading
 taiga.startswith = startswith
 taiga.sizeFormat = sizeFormat
+taiga.dateFormat = dateFormat
 taiga.stripTags = stripTags
 taiga.replaceTags = replaceTags
 taiga.defineImmutableProperty = defineImmutableProperty

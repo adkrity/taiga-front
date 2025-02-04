@@ -7,6 +7,7 @@
 ###
 
 sizeFormat = @.taiga.sizeFormat
+dateFormat = @.taiga.dateFormat
 
 class FinalAttachmentsFullController
     @.$inject = [
