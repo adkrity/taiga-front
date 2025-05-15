@@ -573,7 +573,8 @@ class KanbanController extends mixOf(taiga.Controller, taiga.PageMixin, taiga.Fi
         @scope.points = _.sortBy(project.points, "order")
         @scope.pointsById = groupBy(project.points, (x) -> x.id)
         @scope.usStatusById = groupBy(project.us_statuses, (x) -> x.id)
-        @scope.usStatusList = _.sortBy(project.us_statuses, "order")
+        # @scope.usStatusList = _.sortBy(project.us_statuses, "order")
+        @scope.usStatusList = _.sortBy(project.us_kanban_statuses, "order")
         @scope.usCardVisibility = {}
 
         @scope.$emit("project:loaded", project)
