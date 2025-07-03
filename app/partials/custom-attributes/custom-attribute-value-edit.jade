@@ -32,12 +32,46 @@ form.custom-field-single.editable(autocomplete="off" class!="<%= type === 'check
             <% } else if (type=="url") { %>
             input#custom-field-value(name="value", data-type="url", type="url", value!="<%- value %>")
             <% } else if (type=="dropdown") { %>
-            select#custom-field-value(
-                name="value"
-                ng-model="model"
-            )
-                option
-                option(ng-repeat="option in extra", value="{{ option }}") {{ option }}
+            //- select#custom-field-value(
+            //-     name="value"
+            //-     ng-model="model"
+            //- )
+            //-     option
+            //-     option(ng-repeat="option in extra", value="{{ option }}") {{ option }}
+
+            //- select#custom-field-value(
+            //-     name="value"
+            //-     ng-model="model"
+            //-     multiple
+            //-     size="5"          
+            //-     ng-options="opt as opt for opt in extra track by opt"
+            //- )
+
+            .searchable-multiselect
+                //–– text box for filtering the options
+                input(type="text"
+                    ng-model="filterText"
+                    placeholder="Type to search…"
+                    class="custom-field-filter")
+                //–– filtered multi-select
+                select#custom-field-value(
+                    name="value"
+                    ng-model="model"
+                    multiple
+                    size="5"
+                    ng-options="opt as opt for opt in ( model.concat(extra) | unique | filter:filterTextOrSelected ) track by opt")
+
+            //- ui-select(
+            //-     multiple
+            //-     ng-model="model"
+            //-     theme="select2"
+            //-     close-on-select="false"
+            //-     reset-search-input="false"
+            //-     title="Select items…"
+            //- )
+            //-     ui-select-match(placeholder="Type to search…") {{$item}}
+            //-     ui-select-choices(repeat="opt in extra | filter:$select.search")
+            //-     div {{opt}}
             <% } else if (type=="number") { %>
             input#custom-field-value(name="value", type="number", value!="<%- value %>")
             <% } else if (type=="checkbox") { %>

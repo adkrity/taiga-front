@@ -14,6 +14,19 @@ generateHash = taiga.generateHash
 
 module = angular.module("taigaCommon")
 
+angular.module("taigaCommon").filter("unique", ->
+  (collection) ->
+    return collection if not angular.isArray(collection)
+
+    output = []
+    seen = {}
+    for item in collection
+      continue if seen[item]
+      seen[item] = true
+      output.push(item)
+    return output
+)
+
 # Custom attributes types (see taiga-back/taiga/projects/custom_attributes/choices.py)
 TEXT_TYPE = "text"
 RICHTEXT_TYPE = "url"
@@ -159,10 +172,29 @@ CustomAttributeValueDirective = ($template, $selectedText, $compile, $translate,
         render = (attributeValue, edit=false) ->
             if attributeValue.type is DATE_TYPE and attributeValue.value
                 value = moment(attributeValue.value, "YYYY-MM-DD").format(prettyDate)
-            if attributeValue.type is NUMBER_TYPE and attributeValue.value
+            # if attributeValue.type is NUMBER_TYPE and attributeValue.value
+            else if attributeValue.type is NUMBER_TYPE and attributeValue.value
                 value = parseFloat(attributeValue.value)
+            else if attributeValue.type is DROPDOWN_TYPE
+                temp = attributeValue.value or ""
+                if temp.indexOf(",") isnt -1
+                    clean_value = temp.split(",").map (s) -> s.trim()
+                else if temp?
+                    clean_value = [temp]
+                else
+                    clean_value = []
+
+                displayValue = if clean_value.length then clean_value.join(", ") else ""
+                # value = if Array.isArray(clean_value) then clean_value.join(", ") else clean_value
+                # value = if clean_value.length then clean_value.join(", ") else ""
+
+                scopeModel = clean_value
+                # Overwrite `value` (used in ctx) just for display:
+                value = displayValue
             else
                 value = attributeValue.value
+                scopeModel = value      
+                displayValue = value
 
             editable = isEditable()
 
@@ -178,10 +210,18 @@ CustomAttributeValueDirective = ($template, $selectedText, $compile, $translate,
             scope = $scope.$new()
             scope.attributeHtml = wysiwygService.getHTML("#{value}")  # value could be a number
             scope.extra = attributeValue.extra
-            scope.model = value
+
+            # scope.model = value # old version code
+            scope.model = scopeModel # new version code
+
             scope.project = $scope.project
 
-            if editable and (edit or not value)
+            scope.filterTextOrSelected = (opt) ->
+                if scope.model.indexOf(opt) isnt -1
+                    return true
+                return String(opt).toLowerCase().indexOf((scope.filterText or "").toLowerCase()) isnt -1
+
+            if editable and (edit or not displayValue)
                 html = templateEdit(ctx)
 
                 html = $compile(html)(scope)
@@ -225,8 +265,20 @@ CustomAttributeValueDirective = ($template, $selectedText, $compile, $translate,
             return if not form.validate()
 
             if attributeValue.type is DROPDOWN_TYPE
-                formControl = $el.find("select[name='value']")
-                attributeValue.value = formControl.val()
+                formControl = $el.find("select[name='value']")                
+                # attributeValue.value = formControl.val() # old code
+                selected = formControl.val() or []   # ensure empty array if nothing selected
+                # val() returns an array if ‘multiple’ is set; otherwise a single string
+
+                # If selected is just a string (old‐style single), wrap it as an array:
+                # if angular.isString(selected)
+                #     attributeValue.value = [selected]
+                # else
+                #     attributeValue.value = selected
+
+                # code for array display for selected items
+                values = if angular.isString(selected) then [selected] else selected
+                attributeValue.value = values.join(",") # Join into one CSV string:
             else if attributeValue.type is CHECKBOX_TYPE
                 formControl = $el.find("input[name=value]")
                 attributeValue.value = formControl[0].checked

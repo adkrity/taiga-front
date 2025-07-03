@@ -1,3 +1,38 @@
+// .searchable-multiselect {
+//     display: flex;
+//     flex-direction: column;
+//     width: 100%;
+//     // the filter input
+//     .custom-field-filter {
+//       border: 1px solid $grey-20;
+//       border-radius: .25rem;
+//       margin-bottom: .5rem;    // a bit more breathing room
+//       padding: .5rem .75rem;   // slightly larger tappable area
+//       font-size: 1rem;
+//       width: 100%;
+//     }
+//     // the multi-select box
+//     select {
+//       width: 100%;
+//       min-height: 8rem;        // roughly size="5"
+//       padding: .25rem;
+//       border: 1px solid $grey-30;
+//       border-radius: .25rem;
+//       background: $color-white;
+//       position: relative;
+//       z-index: 10;             // pop above any overflow hidden containers
+//       // style the selected options
+//       option:checked {
+//         background-color: #4C566A;
+//         color: white !important;
+//       }
+//     }
+//     // mobile-friendly spacing
+//     @media screen and (max-width: 1280px) {
+//       margin-bottom: 1rem;
+//     }
+//   }
+
 .duty-custom-fields {
     margin-bottom: 2rem;
     .custom-fields-header {
@@ -91,6 +126,16 @@
     }
 }
 
+.searchable-multiselect {
+    display: flex;
+    flex-direction: column;
+}
+.custom-field-filter {
+    border: 1px solid $grey-20;
+    border-radius: .25rem;
+    margin-bottom: .25em;
+    padding: .25em;
+}
 .custom-fields-body {
     display: flex;
     flex-direction: column;
